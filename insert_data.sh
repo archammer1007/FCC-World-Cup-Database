@@ -53,7 +53,11 @@ do
     fi
 
     #insert game
-    INSERT_GAME_RESULT=$($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals VALUES('$')")
+    INSERT_GAME_RESULT=$($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES('$YEAR', '$ROUND', '$WINNER_ID', '$OPPONENT_ID', '$WINNER_GOALS', '$OPPONENT_GOALS')")
+    if [[ $INSERT_GAME_RESULT == "INSERT 0 1" ]]
+    then
+      echo Inserted $Year $Round into games
+    fi
 
   fi
 done
